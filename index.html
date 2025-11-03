@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cognitive Flux | A Mindful Finance Blog</title>
+    <meta name="description" content="Where Finance Meets Mindfulness & AI. An immersive environment blending finance, AI, side hustles, and mindfulness." />
+    <meta property="og:title" content="Cognitive Flux | A Mindful Finance Blog" />
+    <meta property="og:description" content="Where Finance Meets Mindfulness & AI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://picsum.photos/1200/630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --bg-color: #f8fafc; /* slate-50 */
+        --text-color: #334155; /* slate-700 */
+        --text-color-muted: #64748b; /* slate-500 */
+        --heading-color: #0f172a; /* slate-900 */
+        --accent-color: #10b981; /* emerald-500 */
+        --accent-color-light: #34d399; /* emerald-400 */
+        --accent-color-dark: #059669; /* emerald-600 */
+        --card-bg: rgba(255, 255, 255, 0.7);
+        --card-border: #e2e8f0; /* slate-200 */
+        --header-bg: rgba(255, 255, 255, 0.8);
+        --neural-pattern-color: #10b981;
+        --neural-pattern-opacity: 0.05;
+      }
+
+      html.dark {
+        --bg-color: transparent;
+        --text-color: #cbd5e1; /* slate-300 */
+        --text-color-muted: #94a3b8; /* slate-400 */
+        --heading-color: #f8fafc; /* slate-50 */
+        --card-bg: rgba(15, 23, 42, 0.4); /* slate-900/40 */
+        --card-border: rgba(51, 65, 85, 0.5); /* slate-700/50 */
+        --header-bg: rgba(15, 23, 42, 0.8); /* slate-900/80 */
+        --neural-pattern-color: #7C3AED;
+        --neural-pattern-opacity: 0.05;
+      }
+
+      @keyframes gradient-animation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      body {
+        font-family: 'DM Sans', sans-serif;
+        color: var(--text-color-muted);
+        background-color: var(--bg-color);
+        line-height: 1.7;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      html.dark body {
+        background: linear-gradient(-45deg, #0F172A, #020617, #1e3a8a, #0F172A);
+        background-size: 400% 400%;
+        animation: gradient-animation 20s ease infinite;
+      }
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        color: var(--heading-color);
+      }
+
+      .font-heading { font-family: 'Outfit', sans-serif; }
+      .font-body { font-family: 'DM Sans', sans-serif; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      window.process = {
+        env: {
+          API_KEY: 'YOUR_GEMINI_API_KEY_HERE'
+        }
+      };
+    </script>
+
+  </body>
+</html>
