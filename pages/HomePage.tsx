@@ -952,20 +952,24 @@ const HomePage: React.FC<{ articles: Article[] }> = ({ articles }) => { // FIX A
           </div>
 
           <h1
-            className="mt-8 text-5xl md:text-7xl font-bold tracking-tight"
-            style={{ 
-              background: `linear-gradient(135deg, var(--c0), var(--c2))`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              animation: prefersReducedMotion ? 'none' : 'fadeInUp 0.8s ease-out 0.2s both, titleFlux 8s ease-in-out infinite alternate',
-              marginTop: '-0.5rem',
-              textShadow: '0 0 2px var(--c0), 0 0 1px var(--c2), 0 0 12px rgba(255, 255, 255, 0.15)', 
-              WebkitFontSmoothing: 'antialiased',
-              MozOsxFontSmoothing: 'grayscale',
-            }}
-          >
-            Cognitive Flux
-          </h1>
+    className="mt-8 text-5xl md:text-7xl font-bold tracking-tight"
+    style={{ 
+        // --- Color set to White ---
+        color: 'white',
+        // --- Remove gradient effects ---
+        WebkitBackgroundClip: 'unset',
+        WebkitTextFillColor: 'unset',
+        // --- Animation: Retain fadeInUp, remove titleFlux ---
+        animation: prefersReducedMotion ? 'none' : 'fadeInUp 0.8s ease-out 0.2s both',
+        marginTop: '-0.5rem',
+        // --- Subtle White Shadow for Dark Theme ---
+        textShadow: '0 0 4px rgba(255, 255, 255, 0.2), 0 0 1px rgba(255, 255, 255, 0.1)', 
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale',
+    }}
+>
+    Cognitive Flux
+</h1>
 
           <p 
             className="mt-6 max-w-2xl text-lg md:text-xl text-[var(--text-color-muted)] leading-relaxed"
