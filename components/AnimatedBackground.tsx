@@ -1,21 +1,31 @@
 import React from 'react';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
-const AnimatedBackground: React.FC<{ children: React.ReactNode; theme: 'light' | 'dark' }> = ({ children, theme }) => {
-  const patternColor = theme === 'dark' ? '#7C3AED' : '#10b981';
-  const patternOpacity = 0.05;
+const AnimatedBackground: React.FC<{ theme: 'light' | 'dark'; children: React.ReactNode }> = ({ children }) => {
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const coolCycleClass = prefersReducedMotion ? '' : 'cool-cycle';
 
   return (
-    <div className="relative min-h-screen w-full">
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-1c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 33c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 88c1.105 0 2-0.895 2-2s-0.895-2-2-2-2 0.895-2 2 0.895 2 2 2zM88 12c1.105 0 2-0.895 2-2s-0.895-2-2-2-2 0.895-2 2 0.895 2 2 2z" fill="${encodeURIComponent(patternColor)}" fill-opacity="${patternOpacity}" fill-rule="evenodd"/></svg>')`,
-          backgroundRepeat: 'repeat',
-        }}
-      ></div>
-      <div className="relative z-10">
-        {children}
+    <div className={`relative min-h-screen ${coolCycleClass}`}>
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
+        <div
+          className="absolute top-[15%] left-[10%] w-[500px] h-[500px] blur-[140px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, var(--g0), transparent 70%)',
+            animation: prefersReducedMotion ? 'none' : 'float 18s ease-in-out infinite',
+          }}
+        />
+        <div
+          className="absolute bottom-[10%] right-[5%] w-[600px] h-[600px] blur-[180px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, var(--g1), transparent 70%)',
+            animation: prefersReducedMotion ? 'none' : 'float 22s ease-in-out 4s infinite',
+          }}
+        />
       </div>
+      {children}
     </div>
   );
 };

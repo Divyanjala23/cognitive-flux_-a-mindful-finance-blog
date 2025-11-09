@@ -1,0 +1,269 @@
+/* =========================
+   THEME VARIABLES
+   ========================= */
+
+:root {
+  --h: 150;
+
+  /* Brand hues */
+  --c0: hsl(var(--h) 85% 35%);
+  --c1: hsl(calc(var(--h) + 10) 75% 40%);
+  --c2: hsl(calc(var(--h) + 20) 70% 42%);
+  --c3: hsl(calc(var(--h) + 30) 65% 45%);
+  --g0: hsl(var(--h) 85% 35% / 0.16);
+  --g1: hsl(calc(var(--h) + 20) 70% 42% / 0.12);
+
+  /* LIGHT THEME (default) */
+  --bg-color: hsl(150 30% 98%);
+  --card-bg: hsl(150 30% 99%);
+  --card-bg-soft: hsl(150 30% 97%);
+  --card-border: hsl(150 20% 88%);
+  --text-color-base: hsl(150 22% 14%);
+  --text-color-muted: hsl(150 12% 45%);
+
+  --transition-speed: 0.3s;
+}
+
+/* DARK THEME (html.dark) */
+
+.dark {
+  --bg-color: hsl(150 15% 8%);
+  --card-bg: hsl(150 18% 11%);
+  --card-bg-soft: hsl(150 18% 13%);
+  --card-border: hsl(150 15% 24%);
+  --text-color-base: hsl(150 18% 96%);
+  --text-color-muted: hsl(150 10% 68%);
+}
+
+/* =========================
+   GLOBAL BASE
+   ========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color-base);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, -system-ui,
+    -apple-system, BlinkMacSystemFont, sans-serif;
+  transition:
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Let Tailwind utility classes do most layout; this file is for theme & effects */
+
+/* =========================
+   ANIMATIONS & EFFECTS
+   ========================= */
+
+.cool-cycle {
+  animation: coolHue 28s ease-in-out infinite alternate;
+}
+
+@keyframes coolHue {
+  from {
+    --h: 150;
+  }
+  to {
+    --h: 260;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* =========================
+   CARD STYLE
+   ========================= */
+
+.modern-card {
+  position: relative;
+  border-radius: 1rem;
+  border: 1px solid var(--card-border);
+  background-color: var(--card-bg);
+  backdrop-filter: blur(14px);
+  transition: all var(--transition-speed) ease;
+  overflow: hidden;
+}
+
+.modern-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--c0), var(--c2), var(--c3));
+  -webkit-mask: linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modern-card:hover::before {
+  opacity: 1;
+}
+
+/* helper surface (used in some sections) */
+.surface-soft {
+  background-color: var(--card-bg-soft);
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.btn-hueshift {
+  background: linear-gradient(135deg, var(--c0), var(--c2));
+  color: #ffffff;
+  border-radius: 0.9rem;
+  border: 1px solid color-mix(in oklab, var(--c0) 40%, transparent);
+  box-shadow: 0 4px 20px color-mix(in oklab, var(--c0) 22%, transparent);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.btn-hueshift::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.32),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+.btn-hueshift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px color-mix(in oklab, var(--c0) 30%, transparent);
+}
+
+.btn-ghost-hueshift {
+  background: color-mix(in oklab, var(--c0) 8%, transparent);
+  color: var(--c0);
+  border-radius: 0.9rem;
+  border: 1px solid color-mix(in oklab, var(--c0) 30%, transparent);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-ghost-hueshift::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in oklab, var(--c0) 16%, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.btn-ghost-hueshift:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-ghost-hueshift:hover {
+  border-color: var(--c0);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-ghost-hueshift > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   SCROLLBAR HELPERS
+   ========================= */
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   TYPOGRAPHY HELPERS
+   ========================= */
+
+/* For MarkdownRenderer container */
+.prose-base {
+  color: var(--text-color-base);
+}
+.prose-base h2,
+.prose-base h3 {
+  color: var(--c0);
+}
+.prose-base p {
+  color: var(--text-color-base);
+}
+.prose-base li {
+  color: var(--text-color-muted);
+}
+
+/* =========================
+   MISC / SAFE RESETS
+   ========================= */
+
+/* Make images look a bit nicer by default */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Ensure transitions feel smooth when theme toggles */
+.main-transition {
+  transition:
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease,
+    border-color var(--transition-speed) ease;
+}
